@@ -1,0 +1,21 @@
+services:
+  web:
+    image: mysql/planet-api
+    container_name: my-new-planet-api
+    restart: always 
+    environment: 
+      - MY_PORT=7000
+      - DB_URL=jdbc:mysql://dbmysql:3306/my-docker-database
+      - DB_USERNAME=admin
+      - DB_PASSWORD=password
+    ports:
+      - 7000:7000
+    depends_on:
+      - dbmysql
+  dbmysql:
+    image: mysql
+    environment: 
+      - MYSQL_ROOT_PASSWORD=p4ssw0rd
+      - MYSQL_DATABASE=my-docker-database
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=password
